@@ -53,7 +53,25 @@ one can be more suitable for his office than he is."
 - GitHub Username: Athirofhuski
 ![รูปภาพ](./media/athirat.jpg) 
 
+- Name: Tham numai
+- Student ID: 643021326-3
+- Section: Section 4
 
+So the faithful old minister went into the hall, where the knaves were working with all their
+might, at their empty looms. "What can be the meaning of this?" thought the old man, opening
+his eyes very wide. "I cannot discover the least bit of thread on the looms." However, he did not
+express his thoughts aloud.
+
+The impostors requested him very courteously to be so good as to come nearer their looms;
+and then asked him whether the design pleased him, and whether the colors were not very
+beautiful; at the same time pointing to the empty frames. The poor old minister looked and
+looked, he could not discover anything on the looms, for a very good reason, viz: there was
+nothing there. "What!" thought he again. "Is it possible that I am a simpleton? I have never
+thought so myself; and no one must know it now if I am so. Can it be, that I am unfit for my
+office? No, that must not be said either. I will never confess that I could not see the stuff."
+
+- GitHub Username: tham888
+![รูปภาพ](./media/tham1.jpg)
 
 - Name: Narisara Khaowkong
 - Student ID: 643020617-7
