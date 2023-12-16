@@ -33,3 +33,22 @@ looms until late at night.
 
 - GitHub Username: phatcharapohn
 ![รูปภาพ](./media/phatcharapohn.jpg)
+
+- Name: Athirat Takaikaew
+- Student ID: 643020653-3
+- Section: Section 4
+
+"I should like to know how the weavers are getting on with my cloth," said the Emperor to
+himself, after some little time had elapsed; he was, however, rather embarrassed, when he
+remembered that a simpleton, or one unfit for his office, would be unable to see the
+manufacture. To be sure, he thought he had nothing to risk in his own person; but yet, he
+would prefer sending somebody else, to bring him intelligence about the weavers, and their
+work, before he troubled himself in the affair. All the people throughout the city had heard of
+the wonderful property the cloth was to possess; and all were anxious to learn how wise, or
+how ignorant, their neighbors might prove to be.
+"I will send my faithful old minister to the weavers," said the Emperor at last, after some
+deliberation, "he will be best able to see how the cloth looks; for he is a man of sense, and no
+one can be more suitable for his office than he is."
+
+- GitHub Username: Athirofhuski
+![รูปภาพ](./media/athirat.png) 
