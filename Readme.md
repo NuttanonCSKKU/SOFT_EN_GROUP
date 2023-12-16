@@ -91,3 +91,20 @@ frames.
 
 - GitHub Username: tmxgm
 ![รูปภาพ](./media/tmxgm1.jpg)
+
+- Name: Marisa Pinkaew
+- Student ID: 643021429-3
+- Section: Section 4
+
+"Does not the stuff appear as beautiful to you, as it did to my lord the minister?" asked the
+impostors of the Emperor's second ambassador; at the same time making the same gestures as
+before, and talking of the design and colors which were not there.
+"I certainly am not stupid!" thought the messenger. "It must be, that I am not fit for my good,
+profitable office! That is very odd; however, no one shall know anything about it." And
+accordingly he praised the stuff he could not see, and declared that he was delighted with both
+colors and patterns. "Indeed, please your Imperial Majesty," said he to his sovereign when he
+returned, "the cloth which the weavers are preparing is extraordinarily magnificent."
+
+- GitHub Username: BamMarisa
+![รูปภาพ](./media/Marisa.jpg)
+
