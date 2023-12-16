@@ -17,6 +17,8 @@ everyone who was unfit for the office he held, or who was extraordinarily simple
 - GitHub Username: NuttanonCSKKU
 ![รูปภาพ](./media/bank1.jpg)
 
+---
+
 - Name: Phatcharapohn Samienchai
 - Student ID: 643021330-2
 - Section: Section 4
@@ -33,6 +35,8 @@ looms until late at night.
 
 - GitHub Username: phatcharapohn
 ![รูปภาพ](./media/phatcharapohn.jpg)
+
+---
 
 - Name: Athirat Takaikaew
 - Student ID: 643020653-3
@@ -53,6 +57,8 @@ one can be more suitable for his office than he is."
 - GitHub Username: Athirofhuski
 ![รูปภาพ](./media/athirat.jpg) 
 
+---
+
 - Name: Tham numai
 - Student ID: 643021326-3
 - Section: Section 4
@@ -72,7 +78,9 @@ office? No, that must not be said either. I will never confess that I could not 
 
 - GitHub Username: tham888
 ![รูปภาพ](./media/tham1.jpg)
+
 ---
+
 - Name: Ronnayut Hangnak
 - Student ID:643020636-3
 - Section: section 4
@@ -86,6 +94,7 @@ them."
 
 - GitHub Username: ronnayut007
 ![รูปภาพ](./media/minza.jpg)
+
 ---
 
 - Name: Narisara Khaowkong
@@ -107,6 +116,8 @@ frames.
 - GitHub Username: tmxgm
 ![รูปภาพ](./media/tmxgm1.jpg)
 
+---
+
 - Name: Marisa Pinkaew
 - Student ID: 643021429-3
 - Section: Section 4
@@ -120,6 +131,24 @@ accordingly he praised the stuff he could not see, and declared that he was deli
 colors and patterns. "Indeed, please your Imperial Majesty," said he to his sovereign when he
 returned, "the cloth which the weavers are preparing is extraordinarily magnificent."
 
+
 - GitHub Username: BamMarisa
 ![รูปภาพ](./media/Marisa.jpg)
+
+---
+
+- Name: Phatcharapohn Samienchai
+- Student ID: 643021330-2
+- Section: Section 4
+
+"Is not the work absolutely magnificent?" said the two officers of the crown, already
+mentioned. "If your Majesty will only be pleased to look at it! What a splendid design! What
+glorious colors!" and at the same time they pointed to the empty frames; for they imagined
+that everyone else could see this exquisite piece of workmanship.
+
+- GitHub Username: phatcharapohn
+![รูปภาพ](./media/phatharapohn.jpg)
+
+---
+
 
