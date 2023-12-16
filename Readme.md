@@ -52,3 +52,24 @@ one can be more suitable for his office than he is."
 
 - GitHub Username: Athirofhuski
 ![รูปภาพ](./media/athirat.jpg) 
+
+
+
+- Name: Narisara Khaowkong
+- Student ID: 643020617-7
+- Section: Section 4
+
+
+"We shall be much obliged to you," said the impostors, and then they named the different
+colors and described the pattern of the pretended stuff. The old minister listened attentively to
+their words, in order that he might repeat them to the Emperor; and then the knaves asked for
+more silk and gold, saying that it was necessary to complete what they had begun. However,
+they put all that was given them into their knapsacks; and continued to work with as much
+apparent diligence as before at their empty looms.
+The Emperor now sent another officer of his court to see how the men were getting on, and to
+ascertain whether the cloth would soon be ready. It was just the same with this gentleman as
+with the minister; he surveyed the looms on all sides, but could see nothing at all but the empty
+frames.
+
+- GitHub Username: tmxgm
+![รูปภาพ](./media/tmxgm1.jpg)
