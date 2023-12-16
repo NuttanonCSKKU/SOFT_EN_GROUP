@@ -86,7 +86,7 @@ them."
 
 - GitHub Username: ronnayut007
 ![รูปภาพ](./media/minza.jpg)
-
+---
 
 - Name: Narisara Khaowkong
 - Student ID: 643020617-7
