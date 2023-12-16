@@ -147,7 +147,7 @@ glorious colors!" and at the same time they pointed to the empty frames; for the
 that everyone else could see this exquisite piece of workmanship.
 
 - GitHub Username: phatcharapohn
-![รูปภาพ](./media/phatharapohn.jpg)
+![รูปภาพ](./media/phatcharapohn.jpg)
 
 ---
 
