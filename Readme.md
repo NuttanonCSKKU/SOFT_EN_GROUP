@@ -20,5 +20,16 @@ everyone who was unfit for the office he held, or who was extraordinarily simple
 - Name: Phatcharapohn Samienchai
 - Student ID: 643021330-2
 - Section: Section 4
+
+"These must, indeed, be splendid clothes!" thought the Emperor. "Had I such a suit, I might at
+once find out what men in my realms are unfit for their office, and also be able to distinguish
+the wise from the foolish! This stuff must be woven for me immediately." And he caused large
+sums of money to be given to both the weavers in order that they might begin their work
+directly.
+So the two pretended weavers set up two looms, and affected to work very busily, though in
+reality they did nothing at all. They asked for the most delicate silk and the purest gold thread;
+put both into their own knapsacks; and then continued their pretended work at the empty
+looms until late at night.
+
 - GitHub Username: phatcharapohn
 ![รูปภาพ](./media/phatcharapohn.jpg)
