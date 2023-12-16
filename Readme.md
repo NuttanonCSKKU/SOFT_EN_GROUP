@@ -51,4 +51,4 @@ deliberation, "he will be best able to see how the cloth looks; for he is a man 
 one can be more suitable for his office than he is."
 
 - GitHub Username: Athirofhuski
-![รูปภาพ](./media/athirat.png) 
+![รูปภาพ](./media/athirat.jpg) 
