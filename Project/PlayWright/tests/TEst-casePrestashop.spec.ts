@@ -1,179 +1,238 @@
 import { test, expect } from '@playwright/test';
+//--------TS01เช็คHeadingสินค้ายอดนิยมเมื่อเปลี่ยนภาษา
+test('TC01 เปลี่ยนภาษาเป็นไทยและเช็คHeaddingต้องเป็นภาษาไทย', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await expect(page.getByRole('heading', { name: 'สินค้ายอดนิยม' })).toBeVisible();
+});
 
-//TC01 ปิดหน้าเพจเป็นภาษาไทย
-test('TC01', async ({ page }) => {
-    await page.goto('http://localhost:8080/th/');
-    await page.getByRole('link', { name: 'th', exact: true }).click();
-    await page.waitForTimeout(2000);
+test('TC02 เปลี่ยนภาษาเป็นอังกฤษและเช็คHeadingต้องเป็นภาษาอังกฤษ', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'gb' }).click();
+  await expect(page.getByRole('heading', { name: 'Popular Products' })).toBeVisible();
+});
+
+test('TC03 เปลี่ยนภาษาเป็นอินโดและเช็คHeadingต้องเป็นภาษาอินโด', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'id' }).click();
+  await expect(page.getByRole('heading', { name: 'Produk Populer' })).toBeVisible();
+});
+
+//-----------TS02 เช็คข้อมูลต่างๆในหน้ารายระเอียดสินค้า เมื่อเปลี่ยนภาษา
+test('TC04 เข้าเว็บและเลือกดูรายระเอียดสินค้าภาษาไทย', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await expect(page.getByRole('link', { name: 'เสื้อยืดวิทยาลัยคอมพิวเตอร์ สีดำ' }).first()).toBeVisible();
+  await page.getByRole('link', { name: 'เสื้อยืดวิทยาลัยคอมพิวเตอร์ สีดำ' }).first().click();
+  await expect(page.getByRole('heading', { name: 'เสื้อยืดวิทยาลัยคอมพิวเตอร์ สีดำ' })).toBeVisible();
+  await expect(page.getByText('รายละเอียด รายละเอียดสินค้า สัญลักษณ์ของวิทยาลัยคอมพิวเตอร์ คอลเลกชัน College')).toBeVisible();
+});
+
+test('TC05 เข้าเว็บและเลือกภาษาอินโดและดูรายละเอียดเสื้อยืดวิทยาลัยคอมพิวเตอร์ สีดำ', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'id' }).click();
+  await expect(page.getByText('Kaos Computer College, hitam').first()).toBeVisible();
+  await page.locator('.thumbnail').first().click();
+  await expect(page.getByRole('heading', { name: 'Kaos Computer College, hitam' })).toBeVisible();
+  await expect(page.getByText('Simbol Sekolah Tinggi')).toBeVisible();
+});
+
+test('TC06 เข้าเว็บและเลือกภาษาอังกฤษและดูรายละเอียดเสื้อยืดวิทยาลัยคอมพิวเตอร์ สีดำ', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'gb' }).click();
+  await expect(page.getByRole('link', { name: 'Computer College T-shirt, black' }).first()).toBeVisible();
+  await page.getByRole('link', { name: 'Computer College T-shirt, black' }).first().click();
+  await expect(page.getByRole('heading', { name: 'Computer College T-shirt,' })).toBeVisible();
+  await expect(page.getByText('Symbol of the College of')).toBeVisible();
+});
+//-----------TS03 หน้ารายละเอียดสินค้าเสื้อแขนยาวและดูรายละเอียด เมื่อเปลี่ยนภาษา
+test('TC07 เข้าไปที่หน้ารายละเอียดสินค้าเสื้อแขนยาวและดูรายละเอียดภาษาไทย', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/women/2-9-brown-bear-printed-sweater.html#/1-khnad-s');
+  await expect(page.getByRole('link', { name: 'Computer College T-shirt, black' }).first()).toBeVisible();
+  await page.getByRole('link', { name: 'Computer College T-shirt, black' }).first().click();
+  await expect(page.getByRole('heading', { name: 'Computer College T-shirt,' })).toBeVisible();
+  await expect(page.getByText('Symbol of the College of')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'เสื้อแขนยาวสกรีนโลโก้วิทยาลัยการคอมพิวเตอร์' })).toBeVisible();
+  await expect(page.locator('#product-description-short-2').getByText('ทรงพอดีตัว คอกลม แขนยาว ผ้าฝ้าย 100% ด้านในบุขนด้านในเพื่อความสบายเป็นพิเศษ')).toBeVisible();
+  await expect(page.getByText('คอลเลกชัน โลโก้วิทยาลัยการคอมพิวเตอร์ขนาดใหญ่ ของ วิทยาลัยการคอมพิวเตอร์ นำเสนอผ')).toBeVisible();
+});
+
+test('TC08 เข้าไปที่หน้ารายละเอียดสินค้าเสื้อแขนยาวและดูรายละเอียดภาษาอินโด', async ({ page }) => {
+    await page.goto('http://localhost:8080/th/women/2-9-brown-bear-printed-sweater.html#/1-khnad-s');
+    await page.getByRole('link', { name: 'id' }).click();
+    await expect(page.getByRole('heading', { name: 'Kemeja lengan panjang dengan' })).toBeVisible();
+    await expect(page.locator('#product-description-short-2').getByText('Regular fit, garis leher')).toBeVisible();
+    await expect(page.getByText('Koleksi logo besar Sekolah')).toBeVisible();
   });
 
-//TC02 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูเสื้อผ้า
-  test('TC02 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูเสื้อผ้า', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'เสื้อผ้า' }).click();
-      await page.waitForTimeout(2000);
-    });
-  
- //TC03 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูเสื้อผ้าและเลือกประเภทเสื้อผ้าสุภาพบุรุษ
-  test('TC03 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูเสื้อผ้าและเลือกประเภทเสื้อผ้าสุภาพบุรุษ', async ({ page }) => {
-      await page.getByRole('link', { name: 'เสื้อผ้า' }).click();
-      await page.getByRole('heading', { name: 'สุภาพบุรุษ' }).click();
-      await page.waitForTimeout(2000);
-    });
-  
-
-//TC04 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูเสื้อผ้าและเลือกประเภทเสื้อผ้าสุภาพบุรุษและกดดูรายละเอียดสินค้า
-  test('TC04 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูเสื้อผ้าและเลือกประเภทเสื้อผ้าสุภาพบุรุษและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.getByRole('link', { name: 'เสื้อผ้า' }).click();
-      await page.getByRole('heading', { name: 'สุภาพบุรุษ' }).click();
-      await page.getByRole('link', { name: 'เสื้อยืดวิทยาลัยคอมพิวเตอร์ สีดำ' }).click();
-      await page.waitForTimeout(2000);
-    });
-  
-
-//TC05 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูเสื้อผ้าและเลือกประเภทเสื้อผ้าสุภาพสตรีและกดดูรายละเอียดสินค้า
-  test('TC05 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูเสื้อผ้าและเลือกประเภทเสื้อผ้าสุภาพสตรีและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.getByRole('link', { name: 'เสื้อผ้า' }).click();
-      await page.getByRole('heading', { name: 'สุภาพสตรี' }).getByRole('link').click();
-      await page.getByRole('link', { name: 'เสื้อแขนยาวสกรีนโลโก้วิทยาลัยการคอมพิวเตอร์' }).click();
-      await page.waitForTimeout(2000);
-    });
-  
-
-//TC06 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูของที่ระลึกและเลือกประเภทเครื่องเขียนและกดดูรายละเอียดสินค้า
-  test('TC06 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูของที่ระลึกและเลือกประเภทเครื่องเขียนและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.getByRole('link', { name: 'ของที่ระลึก' }).click();
-      await page.getByRole('heading', { name: 'เครื่องเขียน' }).getByRole('link').click();
-      await page.getByRole('link', { name: 'สมุดโน๊ตCP' }).first().click();
-      await page.waitForTimeout(2000);
-    });
-  
-
-//TC07 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูของที่ระลึกและเลือกประเภทของตกแต่งบ้านและกดดูรายละเอียดสินค้า
-  test('TC07 เปิดหน้าเพจเป็นภาษาไทยและเลือกเมนูของที่ระลึกและเลือกประเภทของตกแต่งบ้านและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.getByRole('link', { name: 'ของที่ระลึก' }).click();
-      await page.getByRole('heading', { name: 'ของตกแต่งบ้าน' }).getByRole('link').click();
-      await page.getByRole('link', { name: 'กระบอกน้ำวิทยาลัยการคอมพิวเตอร์' }).click();
-      await page.waitForTimeout(2000);
-    });
-  
-
-//TC08 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษ
-  test('TC08 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษ', async ({ page }) => {
-    await page.goto('http://localhost:8080/th/');
+  test('TC09 เข้าไปที่หน้ารายละเอียดสินค้าเสื้อแขนยาวและดูรายละเอียดภาษาอังกฤษ', async ({ page }) => {
+    await page.goto('http://localhost:8080/th/women/2-brown-bear-printed-sweater.html');
     await page.getByRole('link', { name: 'gb' }).click();
-    await page.waitForTimeout(2000);
+    await expect(page.getByRole('heading', { name: 'Long-sleeves shirt with a' })).toBeVisible();
+    await expect(page.locator('#product-description-short-2').getByText('Regular fit, round neckline,')).toBeVisible();
+    await expect(page.getByText('Collection of large logos of')).toBeVisible();
   });
-  
-//TC09 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูClothes
-  test('TC09 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูClothes', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'gb' }).click();
-      await page.getByRole('link', { name: 'Clothes' }).click();
-      await page.waitForTimeout(2000);
-    });
+//----------TS04 เช็คหน้ารายละเอียดสินค้าแก้วน้ำ เมื่อเปลี่ยนภาษา
+test('TC10 เข้าไปที่หน้ารายละเอียดสินค้าแก้วน้ำภาษาไทย', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/home-accessories/6-mug-the-best-is-yet-to-come.html');
+  await expect(page.getByRole('heading', { name: 'กระบอกน้ำวิทยาลัยการคอมพิวเตอร์' })).toBeVisible();
+  await expect(page.locator('#product-description-short-6').getByText('กระบอกน้ำสีขาว. 850มล')).toBeVisible();
+  await expect(page.getByText('กระบอกน้ำสวยๆ จากวิทยาลัยคอมพิวเตอร์')).toBeVisible();
+});
 
-//TC10 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูClothesและเลือกประเภทMen
-  test('TC10 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูClothesและเลือกประเภทMen', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'gb' }).click();
-      await page.getByRole('link', { name: 'Clothes' }).click();
-      await page.getByRole('heading', { name: 'Men', exact: true }).click();
-      await page.waitForTimeout(2000);
-    });
-  
-  //TC11 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูClothesเลือกประเภทMenและกดดูรายละเอียดสินค้า
-  test('TC11 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูClothesเลือกประเภทMenและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'gb' }).click();
-      await page.getByRole('link', { name: 'Clothes' }).click();
-      await page.getByRole('heading', { name: 'Men', exact: true }).click();
-      await page.getByRole('link', { name: 'Computer College T-shirt, black' }).click();
-      await page.waitForTimeout(2000);
-    });
+test('TC11 เข้าไปที่หน้ารายละเอียดสินค้าแก้วน้ำเปลี่ยนเป็นภาษาอังกฤษ', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/home-accessories/6-mug-the-best-is-yet-to-come.html');
+  await page.getByRole('link', { name: 'gb' }).click();
+  await expect(page.getByRole('heading', { name: 'College Of Computing Tumblert' })).toBeVisible();
+  await expect(page.locator('#product-description-short-6').getByText('White Tumbler. 850ml')).toBeVisible();
+  await expect(page.getByText('A beautiful tumbler from the')).toBeVisible();
+});
 
-//TC12 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูClothesเลือกประเภทWomenและกดดูรายละเอียดสินค้า
-  test('TC12 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูClothesเลือกประเภทWomenและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'gb' }).click();
-      await page.getByRole('link', { name: 'Clothes' }).click();
-      await page.getByRole('heading', { name: 'Women', exact: true }).click();
-      await page.getByRole('link', { name: 'Long-sleeves shirt with a round neck and a College of Computing design.' }).click();
-      await page.waitForTimeout(2000);
-  });
+test('TC12 เข้าไปที่หน้ารายละเอียดสินค้าแก้วน้ำเปลี่ยนเป็นภาษาอินโด', async ({ page }) => {
+  await page.goto('http://localhost:8080/gb/home-accessories/6-mug-the-best-is-yet-to-come.html');
+  await page.getByRole('link', { name: 'id' }).click();
+  await expect(page.getByRole('heading', { name: 'Perguruan Tinggi Komputasi' })).toBeVisible();
+  await expect(page.locator('#product-description-short-6').getByText('gelas putih. 850ml')).toBeVisible();
+  await expect(page.getByText('Tumbler cantik dari College')).toBeVisible();
+});
+//----------TS05 เช็คหน้ารายละเอียดสินค้าสมุดโน๊ตCP เมื่อเปลี่ยนภาษา
+test('TC13 เข้าไปที่หน้ารายละเอียดสินค้าสมุดโน๊ตCPภาษาไทย', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/stationery/18-hummingbird-notebook.html');
+  await expect(page.getByRole('heading', { name: 'สมุดโน๊ตCP' })).toBeVisible();
+  await expect(page.locator('#product-description-short-18').getByText('สมุดโน๊ตปกแข็ง 120')).toBeVisible();
+  await expect(page.getByText('สมุดบันทึก CP')).toBeVisible();
+});
 
-// TC13 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูSouvenirเลือกประเภทStationeryและกดดูรายละเอียดสินค้า 
-  test('TC13 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูSouvenirเลือกประเภทStationeryและกดดูรายละเอียดสินค้า', async ({ page }) => {
-    await page.goto('http://localhost:8080/th/');
-    await page.getByRole('link', { name: 'gb' }).click();
-    await page.getByRole('link', { name: 'Souvenir' }).click();
-    await page.getByRole('heading', { name: 'Stationery' }).click();
-    await page.getByRole('link', { name: 'CP notebook' }).first().click();
-    await page.waitForTimeout(2000);
-  });
+test('TC14 เข้าไปที่หน้ารายละเอียดสินค้าสมุดโน๊ตCPเป็นภาษาอังกฤษ', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/stationery/18-hummingbird-notebook.html');
+  await page.getByRole('link', { name: 'gb' }).click();
+  await expect(page.getByRole('heading', { name: 'CP notebook' })).toBeVisible();
+  await expect(page.locator('#product-description-short-18').getByText('120 sheets notebook with hard')).toBeVisible();
+  await expect(page.getByText('CP Notebook is the best')).toBeVisible();
+});
 
-// TC14 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูSouvenirเลือกประเภท Home Accessories และกดดูรายละเอียดสินค้า
-  test('TC14 เปิดหน้าเพจเปลี่ยนเป็นภาษาอังกฤษเลือกเมนูSouvenirเลือกประเภท Home Accessories และกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'gb' }).click();
-      await page.getByRole('link', { name: 'Souvenir' }).click();
-      await page.getByRole('heading', { name: 'Home Accessories' }).getByRole('link').click();
-      await page.getByRole('link', { name: 'College Of Computing Tumblert' }).first().click();
-      await page.waitForTimeout(2000);
-  });
-  
-// TC15 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซีย
-  test('TC15 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซีย', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'id' }).click();
-      await page.waitForTimeout(2000);
-    });
-  
-// TC16 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูPakaian
-  test('TC16 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูPakaian', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'id' }).click();
-      await page.getByRole('link', { name: 'Pakaian' }).click();
-      await page.waitForTimeout(2000);
-    });
+test('TC15 เข้าไปที่หน้ารายละเอียดสินค้าสมุดโน๊ตCPเป็นภาษาอินโด', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/stationery/18-hummingbird-notebook.html');
+  await page.getByRole('link', { name: 'id' }).click();
+  await expect(page.getByRole('heading', { name: 'buku catatan CP' })).toBeVisible();
+  await expect(page.locator('#product-description-short-18').getByText('Buku catatan 120 lembar')).toBeVisible();
+  await expect(page.getByText('CP Notebook adalah pilihan')).toBeVisible();
+});
+//----------TS06 เช็คหน้าหมวดหมู่สินค้าเสื้อผ้าและเช็คคำในหน้าเสื้อผ้า เมื่อเปลี่ยนภาษา
+test('TC16 เข้าไปที่หน้าหมวดหมู่สินค้าเสื้อผ้าและเช็คคำในหน้าเสื้อผ้าภาษาไทย', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'เสื้อผ้า' }).click();
+  await expect(page.getByRole('heading', { name: 'เสื้อผ้า' })).toBeVisible();
+  await expect(page.getByText('แฟชั่นสุดโปรดของเรา ไอเท็มเจ๋งๆ ที่คัดสรรมาเพื่อรวมเข้ากับตู้เสื้อผ้าของคุณ แต่งสไตล์ไม่ซ้ำใครด้วยสไตล์ที่เข้ากับตัวคุณ')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'หมวดย่อย' })).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'สุภาพบุรุษ' })).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'สุภาพสตรี' })).toBeVisible();
+  await expect(page.getByText('ผู้จัดหาสินค้า', { exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'แบรนด์' })).toBeVisible();
+  await expect(page.getByLabel('จัดเรียงตามการเลือก')).toBeVisible();
+});
 
-// TC17 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูPakaianและเลือกประเภทpriaและกดดูรายละเอียดสินค้า
-  test('TC17 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูPakaianและเลือกประเภทpriaและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'id' }).click();
-      await page.getByRole('link', { name: 'Pakaian' }).click();
-      await page.getByRole('heading', { name: 'pria' }).getByRole('link').click();
-      await page.getByRole('link', { name: 'Kaos Computer College, hitam' }).first().click();
-      await page.waitForTimeout(2000);
-    });
-  
-// TC18 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูPakaianและเลือกประเภทWanitaและกดดูรายละเอียดสินค้า
-  test('TC18 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูPakaianและเลือกประเภทWanitaและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'id' }).click();
-      await page.getByRole('link', { name: 'Pakaian' }).click();
-      await page.getByRole('heading', { name: 'Wanita' }).getByRole('link').click();
-      await page.getByRole('link', { name: 'Kemeja lengan panjang dengan' }).click();
-      await page.waitForTimeout(2000);
-    });
-  
-//TC19 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูoleh-olehและเลือกประเภทAlat tulisและกดดูรายละเอียดสินค้า
-  test('TC19 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูoleh-olehและเลือกประเภทAlat tulisและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'id' }).click();
-      await page.getByRole('link', { name: 'oleh-oleh' }).click();
-      await page.getByRole('heading', { name: 'Alat tulis' }).getByRole('link').click();
-      await page.getByRole('link', { name: 'buku catatan CP' }).first().click();
-      await page.waitForTimeout(2000);
-  });
+test('TC17 เข้าไปที่หน้าหมวดหมู่สินค้าเสื้อผ้าและเช็คคำในหน้าเสื้อผ้าภาษาอังกฤษ', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/3-clothes');
+  await page.getByRole('link', { name: 'gb' }).click();
+  await expect(page.getByRole('heading', { name: 'Clothes' })).toBeVisible();
+  await expect(page.getByText('Discover our favorites fashionable discoveries, a selection of cool items to integrate in your wardrobe. Compose a unique style with personality which matches your own.')).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'Men', exact: true })).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'Women' })).toBeVisible();
+  await expect(page.getByText('Suppliers')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Brands' })).toBeVisible();
+});
 
-//TC20 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูoleh-olehและเลือกประเภทAksesoris Rumahและกดดูรายละเอียดสินค้า
-  test('TC20 เปิดหน้าเพจเปลี่ยนเป็นอินโดนีเซียเลือกเมนูoleh-olehและเลือกประเภทAksesoris Rumahและกดดูรายละเอียดสินค้า', async ({ page }) => {
-      await page.goto('http://localhost:8080/th/');
-      await page.getByRole('link', { name: 'id' }).click();
-      await page.getByRole('link', { name: 'oleh-oleh' }).click();
-      await page.getByRole('heading', { name: 'Aksesoris Rumah' }).getByRole('link').click();
-      await page.getByRole('link', { name: 'Perguruan Tinggi Komputasi Tumbler' }).click();
-      await page.waitForTimeout(2000);
-  });
-  
+test('TC18 เข้าไปที่หน้าหมวดหมู่สินค้าเสื้อผ้าและเช็คคำในหน้าเสื้อผ้าภาษาอินโด', async ({ page }) => {
+  await page.getByRole('link', { name: 'id' }).click();
+  await expect(page.getByRole('heading', { name: 'Pakaian' })).toBeVisible();
+  await expect(page.getByText('Temukan penemuan fashion favorit kami, seleksi item keren untuk diintegrasikan ke dalam lemari pakaian Anda. Rangkai gaya unik dengan kepribadian yang sesuai dengan Anda sendiri.')).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'pria' })).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'Wanita' })).toBeVisible();
+  await expect(page.getByText('Pemasok')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Merek' })).toBeVisible();
+});
+//-----------TS07 เข้าเช็คไปที่หน้าหมวดหมู่ของที่ระลึกและเช็คคำในหน้าของที่ระลึก เมื่อเปลี่ยนภาษา
+test('TC19 เข้าไปที่หน้าหมวดหมู่ของที่ระลึกและเช็คคำในหน้าของที่ระลึกภาษาไทย', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'ของที่ระลึก' }).click();
+  await expect(page.getByRole('heading', { name: 'ของที่ระลึก' })).toBeVisible();
+  await expect(page.getByText('เพิ่มความสวยงามให้กับโต๊ะทำงานของคุณด้วยของที่ระลึกจากวิทยาลัยวิทยาการคอมพิวเตอร์')).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'เครื่องเขียน' })).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'ของตกแต่งบ้าน' })).toBeVisible();
+  await expect(page.getByText('ผู้จัดหาสินค้า', { exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'แบรนด์' })).toBeVisible();
+});
+
+test('TC20 เข้าไปที่หน้าหมวดหมู่ของที่ระลึกและเช็คคำในหน้าของที่ระลึกภาษาอินโด', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/6-accessories');
+  await page.getByRole('link', { name: 'id' }).click();
+  await expect(page.getByRole('heading', { name: 'oleh-oleh' })).toBeVisible();
+  await expect(page.getByText('Percantik meja kerja Anda')).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'Alat tulis' })).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'Aksesoris Rumah' })).toBeVisible();
+  await expect(page.getByText('Pemasok')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Merek' })).toBeVisible();
+});
+
+test('TC21 เข้าไปที่หน้าหมวดหมู่ของที่ระลึกและเช็คคำในหน้าของที่ระลึกภาษาอังกฤษ', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/6-accessories');
+  await page.getByRole('link', { name: 'gb' }).click();
+  await expect(page.getByRole('heading', { name: 'Souvenir' })).toBeVisible();
+  await expect(page.getByText('Beautify your work desk with')).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'Stationery' })).toBeVisible();
+  await expect(page.locator('#left-column').getByRole('link', { name: 'Home Accessories' })).toBeVisible();
+  await expect(page.getByText('Suppliers')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Brands' })).toBeVisible();
+});
+//-----------TS08 เข้าเช็คหน้าหลักและเช็คคำ เมื่อเปลี่ยนภาษา
+test('TC22 เข้าหน้าหลักและเช็คคำในภาษาไทย', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await expect(page.getByRole('link', { name: 'เสื้อผ้า' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'ของที่ระลึก' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'สินค้ายอดนิยม' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'เสื้อยืดวิทยาลัยคอมพิวเตอร์...' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'เสื้อแขนยาวสกรีนโลโก้วิทยาล...' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'กระบอกน้ำวิทยาลัยการคอมพิวเ' }).nth(1)).toBeVisible();
+  await expect(page.getByRole('link', { name: 'สมุดโน๊ตCP' }).nth(1)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'กำลังลดราคา' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'สินค้าใหม่' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'สินค้าทั้งหมด ' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'สินค้าลดราคาทั้งหมด ' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'ดูสินค้าใหม่ทั้งหมด ' })).toBeVisible();
+  await expect(page.locator('p').filter({ hasText: 'ข้อมูลร้านค้า' })).toBeVisible();
+});
+
+test('TC23 เข้าหน้าหลักและเช็คคำในภาษาอินโด', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'id' }).click();
+  await expect(page.getByRole('link', { name: 'Pakaian' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'oleh-oleh' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Produk Populer' })).toBeVisible();
+  await expect(page.getByText('Kaos Computer College, hitam').first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Kemeja lengan panjang...' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Perguruan Tinggi Komputasi...' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'buku catatan CP' }).nth(1)).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Semua produk ' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Sedang obral' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Semua produk obral ' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Produk baru' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Semua produk baru ' })).toBeVisible();
+  await expect(page.locator('p').filter({ hasText: 'Informasi toko' })).toBeVisible();
+});
+
+test('TC24 เข้าหน้าหลักและเช็คคำในภาษาอังกฤษ', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'gb' }).click();
+  await expect(page.getByRole('link', { name: 'Clothes' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Souvenir' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Popular Products' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Computer College T-shirt,...' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Long-sleeves shirt with a...' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'College Of Computing Tumblert' }).nth(1)).toBeVisible();
+  await expect(page.getByRole('link', { name: 'CP notebook' }).nth(1)).toBeVisible();
+  await expect(page.getByRole('link', { name: 'All products ' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'On sale' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'All sale products ' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'New products' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'All new products ' })).toBeVisible();
+  await expect(page.locator('p').filter({ hasText: 'Store information' })).toBeVisible();
+});
